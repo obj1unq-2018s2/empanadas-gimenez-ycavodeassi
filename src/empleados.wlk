@@ -4,11 +4,13 @@ object gimenez {
 	//var property sueldo = 15000
 	var sueldo = 15000
 	var dinero = 0
-	
-	method sueldo(nuevoValor) { sueldo = nuevoValor }
 	//Por polimorfismo necesito que entienda estos mensajes. 
+	
+	method venderEmpanada() {}
+	method sueldo(nuevoValor) { sueldo = nuevoValor }
+	
 	method sueldo() { return sueldo } //Correccion en el return valor fijo -> var.
-	method dinero() { return dinero }
+	method totalDinero() { return dinero }
 	method cobrarSueldo() { dinero += self.sueldo() }
 }
 
@@ -21,15 +23,15 @@ object baigorria {
 	method venderEmpanada() {
 		cantidadEmpanadasVendidas += 1
 	}
-	
+	method sueldo(nuevoValor) { sueldo = nuevoValor }
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada 
-	method dinero() { return dinero }
+	method totalDinero() { return dinero }
 	method cobrarSueldo() { dinero += self.sueldo() }
 }
 
 object galvan {
 	var dinero = 300000
-	method dinero() { return dinero }
+	method totalDinero() { return dinero }
 	method pagarA( empleado ) { 
 		dinero -= empleado.sueldo() 
 		empleado.cobrarSueldo()
