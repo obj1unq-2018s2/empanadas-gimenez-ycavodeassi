@@ -3,18 +3,18 @@ object gimenez {
 	// le agrega al objeto: un atributo, el método para acceder, y el método para modificar.
 	//var property sueldo = 15000
 	var sueldo = 15000
-	var dinero
+	var dinero = 0
 	
-	method sueldo() { return sueldo } //Correccion en el return valor fijo -> var.
 	method sueldo(nuevoValor) { sueldo = nuevoValor }
-	
-	method cobrarSueldo() { dinero += self.sueldo() }
-	
+	//Por polimorfismo necesito que entienda estos mensajes. 
+	method sueldo() { return sueldo } //Correccion en el return valor fijo -> var.
 	method dinero() { return dinero }
+	method cobrarSueldo() { dinero += self.sueldo() }
 }
 
 object baigorria {
-	var dinero
+	var sueldo = 0
+	var dinero = 0
 	var cantidadEmpanadasVendidas = 100
 	var montoPorEmpanada = 15
 	
@@ -23,11 +23,8 @@ object baigorria {
 	}
 	
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada 
-	method sueldo(nuevoValor) { sueldo = nuevoValor}
-	
-	method cobrarSueldo() { dinero += self.sueldo() }
-	
 	method dinero() { return dinero }
+	method cobrarSueldo() { dinero += self.sueldo() }
 }
 
 object galvan {

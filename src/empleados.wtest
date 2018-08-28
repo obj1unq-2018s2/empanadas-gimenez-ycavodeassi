@@ -23,7 +23,7 @@ describe "Sueldos" {
 	test "Galvan le paga a Gimenez" {
 		galvan.pagarA(gimenez)
 		assert.equals(285000, galvan.dinero())
-		assert.equals(1500, baigorria.sueldo())
-		assert.equals(1500, baigorria.dinero())
+		assert.equals(15000, gimenez.sueldo())
+		assert.equals(15000, gimenez.dinero())
 	}
 }
