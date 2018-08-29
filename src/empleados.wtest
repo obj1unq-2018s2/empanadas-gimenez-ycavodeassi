@@ -47,7 +47,7 @@ describe "Sueldos" {
 		galvan.pagarA(baigorria)
 		baigorria.pagarDeuda()
 		assert.equals(7000, baigorria.totalDeuda())
-		assert.equals(0, baigorria.totalDinero)
+		assert.equals(0, baigorria.totalDinero())
 	}
 	
 	

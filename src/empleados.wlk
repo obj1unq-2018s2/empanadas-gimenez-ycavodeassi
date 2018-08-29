@@ -17,6 +17,7 @@ object gimenez {
 object baigorria {
 	var sueldo = 0
 	var dinero = 0
+	var deuda = 0
 	var cantidadEmpanadasVendidas = 100
 	var montoPorEmpanada = 15
 	
@@ -25,8 +26,23 @@ object baigorria {
 	}
 	method sueldo(nuevoValor) { sueldo = nuevoValor }
 	method sueldo() = cantidadEmpanadasVendidas * montoPorEmpanada 
+	method gasta(unGasto) {  // revisar
+		if(self.totalDinero()>0) {}
+		dinero -= unGasto
+		
+		deuda -= dinero
+	}
+	method dinero(unDinero) { dinero = unDinero}
 	method totalDinero() { return dinero }
+	method deuda(unaDeuda) { deuda = unaDeuda}
+	method totalDeuda() { return deuda }
+	method pagarDeuda() { 
+		if (self.totalDinero()<0) {
+			deuda -= dinero
+		}
+	}
 	method cobrarSueldo() { dinero += self.sueldo() }
+	
 }
 
 object galvan {
