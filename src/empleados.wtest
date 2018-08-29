@@ -27,7 +27,7 @@ describe "Sueldos" {
 		assert.equals(15000, gimenez.totalDinero())
 	}
 	
-	test "Escenario de Practica" {
+	test "Escenario de Practica Baigorria" {
 		baigorria.sueldo(15000)
 		baigorria.deuda(0)
 		baigorria.dinero(0)
@@ -50,6 +50,28 @@ describe "Sueldos" {
 		assert.equals(0, baigorria.totalDinero())
 	}
 	
+		test "Escenario de Practica Gimenez" {
+		baigorria.sueldo(15000)
+		baigorria.deuda(0)
+		baigorria.dinero(0)
+		baigorria.gasta(4000)
+		assert.equals(4000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+		baigorria.gasta(8000)
+		assert.equals(12000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+		galvan.pagarA(baigorria)
+		baigorria.pagarDeuda()
+		assert.equals(0, baigorria.totalDeuda())
+		assert.equals(3000, baigorria.totalDinero())
+		baigorria.gasta(25000)
+		assert.equals(22000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+		galvan.pagarA(baigorria)
+		baigorria.pagarDeuda()
+		assert.equals(7000, baigorria.totalDeuda())
+		assert.equals(0, baigorria.totalDinero())
+	}
 	
 	
 }
