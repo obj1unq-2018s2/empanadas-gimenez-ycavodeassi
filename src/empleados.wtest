@@ -1,77 +1,58 @@
 import empleados.*
 
-describe "Sueldos" {
+describe "Manejo fino de las finanzas de Baigorria" {
+/*
+Baigorria arranca con 15000 de sueldo, deuda en 0, dinero en 0.
+gasta 4000, totalDeuda() debe ser 4000, totalDinero() debe ser 0.
+gasta otros 8000, totalDeuda() pasa a 12000, totalDinero() sigue en 0.
+cobra, con los 15000 que recibe paga toda su deuda y le sobran 3000 pesos. 
+Por lo tanto, totalDeuda() debe ser 0, y totalDinero() debe ser 3000.
+Baigorria gasta 25000, cubre 3000 con el dinero que tiene, el resto es deuda. 
+totalDeuda() queda en 22000, totalDinero() en 0.
+Baigorria cobra, tiene que dedicar los 15000 a pagar deudas, y no le alcanza. 
+Ahora, totalDeuda() pasa a 7000, y totalDinero() a 0.	
+*/	
 	
-	test "sueldo de Baigorria y de Gimenez" {
-		baigorria.venderEmpanada()
-		baigorria.venderEmpanada()
-		assert.equals(1530, baigorria.sueldo())
-		baigorria.venderEmpanada()
-		assert.equals(1545, baigorria.sueldo())
-		assert.equals(15000, gimenez.sueldo())
-		gimenez.sueldo(12000)
-		assert.equals(12000, gimenez.sueldo())
+	test "Baigorria comienza dinero =0, deuda=0 y sueldo 15000" {
+		assert.equals(15000, baigorria.sueldo())
+		assert.equals(0,baigorria.totalDinero())
+		assert.equals(0,baigorria.totalDeuda())
 	}
 	
-	test "Galvan le paga a Baigorria" {
-		galvan.pagarA(baigorria)
-		assert.equals(298500, galvan.totalDinero())
-		assert.equals(1500, baigorria.sueldo())
-		assert.equals(1500, baigorria.totalDinero())
-	}
-	
-	test "Galvan le paga a Gimenez" {
-		galvan.pagarA(gimenez)
-		assert.equals(285000, galvan.totalDinero())
-		assert.equals(15000, gimenez.sueldo())
-		assert.equals(15000, gimenez.totalDinero())
-	}
-	
-	test "Escenario de Practica Baigorria" {
-		baigorria.sueldo(15000)
-		baigorria.deuda(0)
-		baigorria.dinero(0)
+	test "Baigorria gasta 4000" {
 		baigorria.gasta(4000)
 		assert.equals(4000, baigorria.totalDeuda())
 		assert.equals(0, baigorria.totalDinero())
+	}
+	
+	test "Baigorria gasta 8000 +"{
+		baigorria.gasta(4000)//habia gastado 4000
 		baigorria.gasta(8000)
 		assert.equals(12000, baigorria.totalDeuda())
 		assert.equals(0, baigorria.totalDinero())
+	}
+	
+	test "Baigorria cobra y paga su deuda" {
+		baigorria.gasta(12000) //habia gastado 12000
 		galvan.pagarA(baigorria)
-		baigorria.pagarDeuda()
 		assert.equals(0, baigorria.totalDeuda())
 		assert.equals(3000, baigorria.totalDinero())
+	}
+	
+	test "Baigorria gasta 25000 aumenta la deuda y total dinero 0" {
+		baigorria.gasta(12000) //habia gastado 12000
+		galvan.pagarA(baigorria)
 		baigorria.gasta(25000)
 		assert.equals(22000, baigorria.totalDeuda())
 		assert.equals(0, baigorria.totalDinero())
-		galvan.pagarA(baigorria)
-		baigorria.pagarDeuda()
-		assert.equals(7000, baigorria.totalDeuda())
-		assert.equals(0, baigorria.totalDinero())
 	}
-	
-		test "Escenario de Practica Gimenez" {
-		baigorria.sueldo(15000)
-		baigorria.deuda(0)
-		baigorria.dinero(0)
-		baigorria.gasta(4000)
-		assert.equals(4000, baigorria.totalDeuda())
-		assert.equals(0, baigorria.totalDinero())
-		baigorria.gasta(8000)
-		assert.equals(12000, baigorria.totalDeuda())
-		assert.equals(0, baigorria.totalDinero())
+	test "Baigorria cobra y paga un % de su deuda" {
+		baigorria.gasta(12000)
 		galvan.pagarA(baigorria)
-		baigorria.pagarDeuda()
-		assert.equals(0, baigorria.totalDeuda())
-		assert.equals(3000, baigorria.totalDinero())
 		baigorria.gasta(25000)
-		assert.equals(22000, baigorria.totalDeuda())
-		assert.equals(0, baigorria.totalDinero())
 		galvan.pagarA(baigorria)
-		baigorria.pagarDeuda()
 		assert.equals(7000, baigorria.totalDeuda())
 		assert.equals(0, baigorria.totalDinero())
 	}
-	
-	
+		
 }
